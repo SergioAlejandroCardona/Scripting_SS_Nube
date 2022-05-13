@@ -1,0 +1,20 @@
+#!/bin/bash
+COMPROBAR=$(df / | grep / | awk '{ print $5}' | sed 's/%//g')
+#VALOR="81"
+
+if [ "$COMPROBAR" -ge 1 ] && [ "$COMPROBAR" -le 40 ];
+then
+echo ":) Todo anda bien con tu disco. El espacio utilizado es = $COMPROBAR"%
+
+elif [ "$COMPROBAR" -ge 41 ] && [ "$COMPROBAR" -le 80 ];
+then
+echo "Su disco esta regular debe estar pendiente. El espacio utilizado es = $COMPROBAR"%
+
+elif [ "$COMPROBAR" -ge 81 ];
+then
+echo "!DANGER¡  Necesitas un nuevo disco duro. El espacio utilizado es = $COMPROBAR"%
+
+else
+echo "ERROR..."
+
+fi

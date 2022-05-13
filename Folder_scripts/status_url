@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Digite la URL para analizar su status: "$URL
+read URL
+#URL="https://es.stackoverflow.com/questions/390589/c%C3%B3mo-verificar-si-existe-una-url-ruta-web-usando-bas"
+
+RESULTADO=$(curl -sIL $URL | grep '^HTTP' | tail -1 | awk  '{print $2}')
+if [ "$RESULTADO" == "200" ]; then
+  echo "La pagina esta OK STATUS $RESULTADO"
+elif [ "$RESULTADO" == "404" ]; then
+  echo "!WARNING¡ LA PAGINA TIENE UN PROBLEMA, STATUS: $RESULTADO"
+else
+  echo "LA PAGINA TIENE ALGUN TIPO DE PROBLEMA DIFERENTE AL 404, STATUS $RESULTADO"
+fi
